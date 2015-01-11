@@ -1,0 +1,120 @@
+﻿
+    <section class="matter" data-ng-controller="ordertransactions as vm">
+        <div class="container-fuild">
+            <div class="row-fluid">
+                <div class="form-search">
+                    <input class="input-xlarge search-query"
+                           data-ng-model="vm.orderSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder="live search..." />
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info"
+                           data-ng-click="vm.refresh()"><i class="glyphicon glyphicon-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info"
+                           data-ng-click="vm.addtransaction()"><i class="glyphicon glyphicon-plus"></i><span>Add Product</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"
+                         subtitle="{{vm.ordertransactionFilteredCount}}/{{vm.ordertransactionCount}}"
+                         right-text="Page {{vm.paging.currentPage}} of {{vm.paging.pageCount}}"></div>
+
+                    <div>
+
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Product</td>
+                                    <td></td>
+                                    <td>Unit Price</td>
+                                    <td>Quantity</td>
+                                    <td>Discount</td>
+                                    <td>LineTotal</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="ot in vm.filteredOrdertransactions">
+                                    <td>
+                                        <select data-ng-options="prod.productID as prod.productName for prod in vm.products"
+                                                data-ng-model="ot.productID"
+                                                data-ng-change="ot.unitPrice = ot.productUnitPrice">
+                                            <option value="">-- choose Product --</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="vm.btnSelectProduct(ot)">
+                                                <i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                    <td >
+                                        <input style="width:50px" data-ng-model="ot.unitPrice" />
+                                    </td>
+                                    <td >
+                                        <input style="width:50px" data-ng-model="ot.quantity" />
+                                    </td>
+                                    <td >
+                                        <input style="width:50px" data-ng-model="ot.discount" />
+                                    </td>
+                                    <td >
+                                        <input style="width:50px" data-ng-model="ot.lineTotal" />
+                                    </td>
+                                    <td>
+                                        <span class="input-group-btn">
+
+                                            <button class="btn btn-danger"
+                                                    data-ng-click="vm.deletetransaction(ot.productID)">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+
+                                    <td></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+
+
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                        <pagination baundary-link="true"
+                                    on-select-page="vm.pageChanged(page)"
+                                    total-items="vm.ordertransactionFilteredCount"
+                                    page="vm.paging.currentPage"
+                                    items-per-page="vm.paging.pageSize"
+                                    max-size="vm.paging.maxPagesToShow"
+                                    class="pagination-sm"
+                                    previous-text="Prev"
+                                    next-text="Next"
+                                    first-text="First"
+                                    last-text="Last"></pagination>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <script type="text/ng-template" id="selectProduct.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Products</h3>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-click="ok()">OK</button>
+                    </div>
+                </script>
+            </div>
+
+        </div>
+    </section>
+
+

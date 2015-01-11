@@ -1,0 +1,360 @@
+﻿<html ng-app="AngularApp">
+@{
+    ViewBag.Title = "Order-Detail";
+}
+
+<head title="">
+    <style type="text/css">
+        #tblContainer, #tblcollections, #tblCRUD, td {
+            border: double;
+        }
+
+        th {
+            background-color: darkgray;
+        }
+
+        #dvcollection {
+            height: 500px;
+            overflow-y: scroll;
+        }
+
+        #dvsubcollection {
+            height: 200px;
+            overflow-y: scroll;
+        }
+    </style>
+
+
+</head>
+<h2>Using Angular for Performing CRUD Operations</h2>
+<body>
+    <table id="tblContainer" ng-controller="mainController">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Customer Filter :</td>
+                        <td>
+                            <div ng-controller="customerController">
+                                <select id="CustomerFilter"
+                                        ng-model="CustomerID"
+                                        ng-change="broadcast()"
+                                        onchange="setTimeout(document.getElementById('EmployeeFilter').selectedIndex = 0, 10000)"
+                                        ng-options="customer.CustomerID as customer.CustomerID + ' - '+ customer.CompanyName for customer in Customers" class="dropdown form-control" required>
+                                    <option value="">-- choose Customer --</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td>Employee Filter :</td>
+                         <td>
+                             <div ng-controller="employeeController">
+                                 <select id="EmployeeFilter "
+                                         ng-model="EmployeeID"
+                                         ng-change="broadcast()"
+                                         onchange="document.getElementById('CustomerFilter').selectedIndex = 0"
+                                         ng-options="employee.EmployeeID as employee.LastName + ' - '+ employee.FirstName for employee in Employees" class="dropdown form-control" required>
+                                     <option value="">-- choose Employee --</option>
+                                 </select>
+                             </div>
+                         </td>
+                     </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr ng-controller="orderController">
+            <td>
+                <table>
+                    <tr>
+
+                        <td>
+                            <table id="tblCRUD">
+                                <tr>
+                                    <td>
+                                        <span>OrderNo</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="eno" readonly="readonly" ng-model="OrderID" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <select ng-model="CustomerID" ng-options="customer.CustomerID as customer.CustomerID + ' - ' + customer.CompanyName for customer in Customers" class="dropdown form-control" required>
+                                            <option value="">-- choose Customer --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Employee</span>
+                                    </td>
+                                    <td>
+                                        <select ng-model="EmployeeID" ng-options="employee.EmployeeID as employee.FirstName + ' ' + employee.LastName for employee in Employees" class="dropdown form-control" required>
+                                            <option value="">-- choose Employee --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>OrderDate</span>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="OrderDateInput" name="input" ng-model="OrderDate"
+                                               placeholder="dd-MM-yyyy" class="form-control" />
+                                        <span class="error" ng-show="input.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="error" ng-show="input.$error.date">
+                                            Not a valid date!
+                                        </span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>RequiredDate</span>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="RequiredDateInput" name="input" ng-model="RequiredDate"
+                                               placeholder="dd-MM-yyyy" class="form-control" />
+                                        <span class="error" ng-show="input.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="error" ng-show="input.$error.date">
+                                            Not a valid date!
+                                        </span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>ShippedDate</span>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="ShippedDate" name="input" ng-model="ShippedDate"
+                                               placeholder="dd-MM-yyyy" class="form-control" />
+                                        <span class="error" ng-show="myForm.input.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="error" ng-show="myForm.input.$error.date">
+                                            Not a valid date!
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>ShipVia</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipVia" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Freight</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="Freight" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship Name</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipName" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship Address</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipAddress" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship City</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipCity" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship Region</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipRegion" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship Postal</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipPostalCode" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Ship Country</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="ShipCountry" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Total</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="OrderTotal" class="form-control" />
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                        <td ng-show="!IsNewRecord">
+                            <div ng-controller="orderDetailController">
+                                <div id="dvsubcollection">
+                                    <table id="tblcollections">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Product</th>
+                                                <th>UnitPrice</th>
+                                                <th>Quantity</th>
+                                                <th>Discount</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="OrderDetail in OrderDetails">
+                                            <tr ng-click="getOrderDetailsByProduct(OrderDetail)">
+                                                <td> <span>{{OrderDetail.OrderID}}</span></td>
+                                                <td> <span>{{OrderDetail.ProductName}}</span></td>
+                                                <td> <span>{{OrderDetail.UnitPrice}}</span></td>
+                                                <td> <span>{{OrderDetail.Quantity}}</span></td>
+                                                <td> <span>{{OrderDetail.Discount}}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span>Order No</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="desig" readonly="readonly" required ng-model="OrderID" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Product</span>
+                                        </td>
+                                        <td>
+                                            <select ng-model="ProductID" class="dropdown form-control" required
+                                                    ng-options="product.ProductID as product.ProductName for product in Products">
+                                                <option value="">-- choose Product --</option>
+
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>UnitPrice</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="desig" required ng-model="UnitPrice" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Quantity</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="desig" required ng-model="Quantity" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Discount</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="desig" required ng-model="Discount" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="button" id="new" value="New" ng-click="clear()" ng-disabled="btnNewDisable" />
+
+                                        </td>
+                                        <td>
+                                            <input type="button" id="save" value="Save" ng-click="save()" />
+                                            <input type="button" id="delete" value="Delete" ng-click="delete()" ng-disabled="btnDeleteDisable" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                </divng-controller>
+                        </td>
+                    <tr>
+                        <td>
+                            <input type="button" id="new" value="New" ng-click="clear()" ng-disabled="btnNewDisable" />
+                        </td>
+                        <td>
+                            <input type="button" id="save" value="Save" ng-click="save()" />
+                        </td>
+                        <td>
+                            <input type="button" id="delete" value="Delete" ng-click="delete()" ng-disabled="btnDeleteDisable" />
+                        </td>
+                    </tr>
+                </table>
+                <div>{{Message}}</div>
+            </td>
+            <td>
+                <div id="dvcollection">
+
+
+                    <table id="tblcollections">
+                        <thead>
+                            <tr>
+                                <th>OrderID</th>
+                                <th>Customer</th>
+                                <th>Employee</th>
+                                <th>OrderDate</th>
+                                <th>ShippedDate</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="Order in Orders">
+                            <tr ng-click="get(Order.OrderID)">
+                                <td> <span>{{Order.OrderID}}</span></td>
+                                <td> <span>{{Order.CustomerID}}</span></td>
+                                <td> <span>{{Order.EmployeeName}}</span></td>
+                                <td> <span>{{Order.OrderDate  | asDate | date:'shortDate'}}</span></td>
+                                <td> <span>{{Order.ShippedDate  | asDate | date:'shortDate'}}</span></td>
+                                <td> <span>{{Order.OrderTotal}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+
+
+
+
+

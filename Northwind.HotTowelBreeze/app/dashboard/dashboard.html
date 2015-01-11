@@ -1,0 +1,59 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="today-datas">
+                        <li class="blightblue">
+                            <div class="pull-left"><i class="fa fa-plane"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+
+                        <li class="borange">
+                            <a href="#/sessions">
+                                <div class="pull-left"><i class="fa fa-list"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.employeeCount}}</span> Employee
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wviolet" data-ng-controller="wip as vm">
+                        <div data-cc-widget-header title="{{vm.title}}"
+                             subtitle="{{vm.wip.length}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content">
+                            <div class="widget-content"
+                                 data-ng-include="'/app/wip/wipwidget.html'">
+                            </div>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget wgreen">
+                        <div data-cc-widget-header title="{{vm.news.title}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <small>{{vm.news.description}}</small>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

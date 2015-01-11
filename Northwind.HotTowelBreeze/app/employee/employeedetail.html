@@ -1,0 +1,163 @@
+﻿<section class="mainbar" data-ng-controller="employeedetail as vm">
+    <section class="matter">
+        <div class="container-fuild">
+            <div>
+                <button class="btn btn-info"
+                        data-ng-click="vm.goBack()">
+                    <i class="glyphicon glyphicon-hand-left"></i>Back
+                </button>
+                <button class="btn btn-info"
+                        data-ng-click="vm.cancel()"
+                        data-ng-disabled="!vm.canSave">
+                    <i class="glyphicon glyphicon-remove"></i>Cancel
+                </button>
+                <button class="btn btn-info"
+                        data-ng-click="vm.save()"
+                        data-ng-disabled="!vm.canSave">
+                    <i class="glyphicon glyphicon-save"></i>Save
+                </button>
+                <button class="btn btn-danger"
+                        data-ng-click="vm.deleteEmployee()">
+                    <i class="glyphicon glyphicon-trash"></i>Delete
+                </button>
+
+                <span data-ng-show="vm.hasChanges"
+                      class="dissolve-animation ng-hide">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                </span>
+            </div>
+            <div class="widget wgreen">
+                <div data-cc-widget-header
+                     title="Edit {{vm.employee.fullName || 'New Employee'}} "></div>
+                <div class="widget-content user-details">
+                    <div>
+                        <label>First Name</label>
+                        <input data-ng-model="vm.employee.firstName" class="form-control"
+                               data-z-validate
+                               placeholder="First Name" />
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <input data-ng-model="vm.employee.lastName" class="form-control"
+                               data-z-validate
+                               placeholder="Last Name" />
+                    </div>
+                    <div>
+                        <label>Title</label>
+                        <input data-ng-model="vm.employee.title" class="form-control"
+                               data-z-validate />
+                    </div>
+                    <div>
+                        <label>TitleOfCourtesy</label>
+                        <input data-ng-model="vm.employee.titleOfCourtesy" />
+                    </div>
+                    <div>
+                        <label>Birth Date</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="vm.employee.birthDate"
+                                   is-open="vm.openedBirthDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                   close-text="Close" show-weeks="false" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.btnBirthDate($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+
+
+
+                    </div>
+                    <div>
+                        <label>Hire Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="vm.employee.hireDate"
+                                   is-open="vm.openedHireDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                   close-text="Close" show-weeks="false" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.btnHireDate($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Address</label>
+                        <input data-ng-model="vm.employee.address" />
+                    </div>
+                    <div>
+                        <label>City</label>
+                        <input data-ng-model="vm.employee.city" />
+                    </div>
+                    <div>
+                        <label>Region</label>
+                        <input data-ng-model="vm.employee.region" />
+                    </div>
+                    <div>
+                        <label>Postal Code</label>
+                        <input data-ng-model="vm.employee.postalCode" />
+                    </div>
+                    <div>
+                        <label>Country</label>
+                        <input data-ng-model="vm.employee.country" />
+                    </div>
+                    <div>
+                        <label>Home Phone</label>
+                        <input data-ng-model="vm.employee.homePhone" />
+                    </div>
+                    <div>
+                        <label>Extension</label>
+                        <input data-ng-model="vm.employee.extension"
+                               data-z-validate />
+                    </div>
+                    <div>
+                        <label>Photo</label>
+                        <img id="imagePreview" ccimgperson data-cc-img-person="{{vm.employee.photo}}" class="img-polaroid user-pic" />
+                        <progressbar animate="true" value="vm.progress" type="success"><b>{{vm.progress}}%</b></progressbar>
+                        <form>
+                            <input type="file" id="file" ng-file-select="onFileSelect($files)">
+                            <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+                        </form>
+                    </div>
+                    <div>
+                        <label>Notes</label>
+                        <div class="input-group">
+                            <textarea data-ng-model="vm.employee.notes" rows="2" class="form-control"
+                                      placeholder="Add Notes" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-info" ng-click="vm.btnEditNotes()">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Reports To</label>
+                        <select data-ng-options="emp.employeeID as emp.fullName for emp in vm.employees"
+                                data-ng-model="vm.employee.reportsTo">
+                            <option value="">-- choose Manager --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Photo Path</label>
+                        <input data-ng-model="vm.employee.photoPath" />
+                    </div>
+                    <script type="text/ng-template" id="editNotes.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Notes</h3>
+                        </div>
+                        <div class="modal-body">
+                            <textarea data-ng-model="vm.employee.notes" rows="7" cols="90"
+                                      placeholder="Add Notes" />
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" ng-click="ok()">OK</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,133 @@
+﻿<section class="mainbar" data-ng-controller="orderdetail as vm">
+    <section class="matter">
+        <div class="container-fuild">
+            <div>
+                <button class="btn btn-info"
+                        data-ng-click="vm.goBack()">
+                    <i class="glyphicon glyphicon-hand-left"></i>Back
+                </button>
+                <button class="btn btn-info"
+                        data-ng-click="vm.cancel()"
+                        data-ng-disabled="!vm.canSave">
+                    <i class="glyphicon glyphicon-remove"></i>Cancel
+                </button>
+                <button class="btn btn-info"
+                        data-ng-click="vm.save()"
+                        data-ng-disabled="!vm.canSave">
+                    <i class="glyphicon glyphicon-save"></i>Save
+                </button>
+                <button class="btn btn-danger"
+                        data-ng-click="vm.deleteorder()">
+                    <i class="glyphicon glyphicon-trash"></i>Delete
+                </button>
+              
+
+                <span data-ng-show="vm.hasChanges"
+                      class="dissolve-animation ng-hide">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                </span>
+            </div>
+            <div class="widget wgreen">
+                <div data-cc-widget-header
+                     title="Edit {{vm.order.orderID || 'New Order'}} "></div>
+                <div class="widget-content user-details">
+                    <div>
+                        <label>Customer</label>
+                        <select data-ng-options="cus.customerID as cus.companyName for cus in vm.customers"
+                                data-ng-model="vm.order.customerID" data-z-validate>
+                            <option value="">-- choose Customer --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Employee</label>
+                        <select data-ng-options="emp.employeeID as emp.firstName for emp in vm.employees"
+                                data-ng-model="vm.order.employeeID" data-z-validate>
+                            <option value="">-- choose Employee --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Order Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="vm.order.orderDate"
+                                   is-open="vm.openedOrderDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                   close-text="Close" show-weeks="false" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.btnOrderDate($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Required Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="vm.order.requiredDate"
+                                   is-open="vm.openedRequiredDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                   close-text="Close" show-weeks="false" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.btnRequiredDate($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Shipped Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="vm.order.shippedDate"
+                                   is-open="vm.openedShippedDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                   close-text="Close" show-weeks="false" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.btnShippedDate($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Ship Via</label>
+                        <input data-ng-model="vm.order.shipVia" />
+                    </div>
+                    <div>
+                        <label>Freight</label>
+                        <input data-ng-model="vm.order.freight" />
+                    </div>
+                    <div>
+                        <label>Ship Name</label>
+                        <input data-ng-model="vm.order.shipName" />
+                    </div>
+                    <div>
+                        <label>Ship Address</label>
+                        <input data-ng-model="vm.order.shipAdress" />
+                    </div>
+                    <div>
+                        <label>City</label>
+                        <input data-ng-model="vm.order.shipCity" />
+                    </div>
+                    <div>
+                        <label>Region</label>
+                        <input data-ng-model="vm.order.shipRegion" />
+                    </div>
+                    <div>
+                        <label>Postal Code</label>
+                        <input data-ng-model="vm.order.shipPostalCode" />
+                    </div>
+                    <div>
+                        <label>Country</label>
+                        <input data-ng-model="vm.order.shipCountry" />
+                    </div>
+                    <div>
+                        <label>Total</label>
+                        <input data-ng-model="vm.order.total" />
+                    </div>
+
+                    <div data-ng-include="'/app/order/ordertransactions.html'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

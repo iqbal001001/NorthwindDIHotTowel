@@ -1,0 +1,58 @@
+﻿<section class="mainbar" data-ng-controller="employees as vm">
+    <section class="matter">
+        <div class="container-fuild">
+            <div class="row-fluid">
+                <div  class="form-search">
+                    <input class="input-xlarge search-query"
+                           data-ng-model="vm.employeeSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder ="live search..." />
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info"
+                           data-ng-click="vm.refresh()"><i class="glyphicon glyphicon-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info"
+                           href="#/employee/new"><i class="glyphicon glyphicon-plus"></i><span>Add Employee</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"
+                         subtitle="{{vm.employeeFilteredCount}}/{{vm.employeeCount}}"
+                         right-text="Page {{vm.paging.currentPage}} of {{vm.paging.pageCount}}"></div>
+
+                    <div class="widget-content user">
+                        <div class="padd  fader-animation"
+                             data-ng-repeat="emp in vm.filteredEmployees"
+                             data-ng-click="vm.gotoEmployee(emp)">
+                            <div class="user">
+                                <img ccimgperson data-cc-img-person="{{emp.photo}}" class="img-polaroid user-pic" />
+                                <div class="user-details" title="Go to employee details">
+                                    <h1>{{emp.fullName}}</h1>
+                                    <small class="right hidden-phone">{{emp.homePhone}} <i class="glyphicon glyphicon-phone-alt"></i></small>
+                                    <small class="right hidden-phone">{{emp.extension}} <i class="glyphicon glyphicon-plus-sign"></i></small><br />
+                                    <small class="text-subtle hidden-phone">Reports to {{emp.manager}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                        <pagination baundary-link="true"
+                                    on-select-page="vm.pageChanged(page)"
+                                    total-items="vm.employeeFilteredCount"
+                                    page="vm.paging.currentPage"
+                                    items-per-page ="vm.paging.pageSize"
+                                    max-size="vm.paging.maxPagesToShow"
+                                    class="pagination-sm"
+                                    previous-text="Prev"
+                                    next-text="Next"
+                                    first-text="First"
+                                    last-text="Last"></pagination>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

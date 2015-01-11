@@ -1,0 +1,141 @@
+﻿<section class="mainbar" data-ng-controller="products as vm">
+    <section class="matter">
+        <div class="container-fuild">
+            <div class="row-fluid">
+                <div class="form-search">
+                    <input class="input-xlarge search-query"
+                           data-ng-model="vm.productSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder="live search..." />
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info"
+                           data-ng-click="vm.refresh()"><i class="glyphicon glyphicon-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info"
+                           data-ng-click="vm.gotoProduct('new')"><i class=" glyphicon glyphicon-plus"></i><span>Add Product</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="{{vm.title}}"
+                         subtitle="{{vm.productFilteredCount}}/{{vm.productCount}}"
+                         right-text="Page {{vm.paging.currentPage}} of {{vm.paging.pageCount}}"></div>
+
+                    <table class="widget-content   user">
+                        <thead>
+                            <th>
+                                Product ID
+                            </th>
+                            <th>Name</th>
+                            <th>Unit Price</th>
+                        </thead>
+                        <tbody>
+                            <tr class=" row-fluid padd  fader-animation" style="height:2em"
+                                data-ng-repeat="p in vm.filteredProducts"
+                                data-ng-click="vm.gotoProduct(p.productID)">
+
+                                <td>
+                                    {{p.productID}}
+                                </td>
+                                <td>
+                                    <small class="right hidden-phone">{{p.productName}} </small>
+                                </td>
+                                <td>
+                                    <small class="right hidden-phone">{{p.unitPrice}} </small>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                        <pagination baundary-link="true"
+                                    on-select-page="vm.pageChanged(page)"
+                                    total-items="vm.productFilteredCount"
+                                    page="vm.paging.currentPage"
+                                    items-per-page="vm.paging.pageSize"
+                                    max-size="vm.paging.maxPagesToShow"
+                                    class="pagination-sm"
+                                    previous-text="Prev"
+                                    next-text="Next"
+                                    first-text="First"
+                                    last-text="Last"></pagination>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class="widget wgreen">
+                    <div>
+                      
+                        <button class="btn btn-info"
+                                data-ng-click="vm.cancel()"
+                                data-ng-disabled="!vm.canSave">
+                            <i class="glyphicon glyphicon-remove"></i>Cancel
+                        </button>
+                        <button class="btn btn-info"
+                                data-ng-click="vm.save()"
+                                data-ng-disabled="!vm.canSave">
+                            <i class="glyphicon glyphicon-save"></i>Save
+                        </button>
+                        <button class="btn btn-danger"
+                                data-ng-click="vm.deleteProduct()">
+                            <i class="glyphicon glyphicon-trash"></i>Delete
+                        </button>
+
+                        <span data-ng-show="vm.hasChanges"
+                              class="dissolve-animation ng-hide">
+                            <i class="glyphicon glyphicon-asterisk"></i>
+                        </span>
+                    </div>
+                    <div class="widget wgreen">
+                        <div data-cc-widget-header
+                             title="Edit {{vm.product.orderID || 'New product'}} "></div>
+                        <div class="widget-content user-details">
+                          
+                            <div>
+                                <label>Product name</label>
+                                <input data-ng-model="vm.product.productName" />
+                            </div>
+                            <div>
+                                <label>Supplier</label>
+                                <input data-ng-model="vm.product.supplierID" />
+                            </div>
+                            <div>
+                                <label>Category</label>
+                                <input data-ng-model="vm.product.categoryID" />
+                            </div>
+                            <div>
+                                <label>Quantity Per Unit</label>
+                                <input data-ng-model="vm.product.QuantityPerUnit" />
+                            </div>
+                            <div>
+                                <label>Unit Price</label>
+                                <input data-ng-model="vm.product.unitPrice" />
+                            </div>
+                            <div>
+                                <label>Units In Stock</label>
+                                <input data-ng-model="vm.product.unitsInStock" />
+                            </div>
+                            <div>
+                                <label>Units On Order</label>
+                                <input data-ng-model="vm.product.unitsOnOrder" />
+                            </div>
+                            <div>
+                                <label>Reorder Level</label>
+                                <input data-ng-model="vm.product.reorderLevel" />
+                            </div>
+                            <div>
+                                <label>Discontinued</label>
+                                <input data-ng-model="vm.product.Discontinued" />
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+

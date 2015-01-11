@@ -1,0 +1,275 @@
+﻿<html ng-app="angularapp">
+
+
+<head title="">
+    <style type="text/css">
+        #tblContainer, #tblcollections, #tblCRUD, td {
+            border: double;
+        }
+
+        th {
+            background-color: darkgray;
+        }
+
+        #dvcollection {
+            height: 500px;
+            overflow-y: scroll;
+        }
+    </style>
+
+
+</head>
+<h2>Using Angular for Performing CRUD Operations</h2>
+<body>
+    <table id="tblContainer" ng-controller="employeeCtrl">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+
+                        <td>
+                            <table id="tblCRUD">
+                                <tr>
+                                    <td>
+                                        <span>EmpNo</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="eno" readonly="readonly" ng-model="employee.EmployeeID" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>EmpName</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ename" required ng-model="employee.LastName" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Salary</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="salary" required ng-model="employee.FirstName" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Title</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="dname" required ng-model="employee.Title" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Title Of Courtesy</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="dname" name="input" required ng-model="employee.TitleOfCourtesy" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>BirthDate</span>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="BirthDateInput" name="input" ng-model="employee.BirthDate"
+                                               placeholder="dd-MM-yyyy" class="form-control" />
+                                        <span class="error" ng-show="input.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="error" ng-show="input.$error.date">
+                                            Not a valid date!
+                                        </span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>HireDate</span>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="HireDate" name="input" ng-model="employee.HireDate"
+                                               placeholder="dd-MM-yyyy" class="form-control" />
+                                        <span class="error" ng-show="myForm.input.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="error" ng-show="myForm.input.$error.date">
+                                            Not a valid date!
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Address</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.Address" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>City</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.City" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Region</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.Region" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Postal</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.PostalCode" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Country</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.Country" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>HomePhone</span>
+                                    </td>
+                                    <td>
+
+                                        <input type="text" id="desig" required ng-model="employee.HomePhone" ng-bind="HomePhone" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Extension</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.Extension" class="form-control" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Photo</span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <form>
+                                                <input type="file" id="file" ng-file-select="onFileSelect($files)">
+                                                <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+
+                                            </form>
+                                            <b>Preview:</b><br />
+                                            <i ng-hide="Photo">No image choosed</i>
+                                            <img id="imagePreview" ng-src="data:image/bmp;base64,{{employee.Photo}}" /><br />
+                                            <b>Progress:</b>
+                                            <progress value="{{progress}}"></progress>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Notes</span>
+                                    </td>
+                                    <td>
+                                        <textarea id="Notes" ng-model="employee.Notes" rows='7' class="form-control"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Reports To</span>
+                                    </td>
+                                    <td>
+                                        <select ng-model="employee.ReportsTo" ng-options="employee.EmployeeID as employee.FirstName for employee in items" class="dropdown form-control" required>
+                                            <option value="">-- choose Manager --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>PhotoPath</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="desig" required ng-model="employee.PhotoPath" class="form-control" class="form-control" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    <tr>
+                        <td>
+                            <input type="button" id="new" value="New" ng-click="newEmployee()" ng-disabled="employee.isNew" />
+                        </td>
+                        <td>
+                            <input type="button" id="save" value="Save" ng-click="save()" />
+                            <input type="button" id="saveChanges" value="Save Changes" ng-click="saveChangesToServer()" />
+                            <input type="button" id="RejectChanges" value="Cancel" ng-click="rejectChanges()" ng-disabled="!employee.isChanged" />
+                            <input type="button" id="delete" value="Delete" ng-click="deleteEmployee()" ng-disabled="btndeletedisable" />
+
+                        </td>
+                       
+                    </tr>
+                </table>
+                <div>{{Message}}</div>
+            </td>
+            <td>
+                <div id="dvcollection">
+                    <table id="tblcollections">
+                        <thead>
+                            <tr>
+                                <th>FirtsName</th>
+                                <th>LastName</th>
+                                <th>Reports To</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="Emp in items">
+                            <tr ng-click="getEmployee(Emp)">
+                                <td> <span>{{Emp.FullName}}</span></td>
+                               
+                                <td> <span>{{Emp.LastName}}</span></td>
+                                <td> <span>{{Emp.Manager}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <!-- 3rd party libraries -->
+    <script src="Scripts/angular.js"></script>
+    <!--<script src="Scripts/jquery-1.8.3.min.js"></script>-->
+    <script src="Scripts/q.js"></script>
+    <script src="Scripts/breeze.debug.js"></script>
+    <script src="Scripts/breeze.angular.js"></script>
+
+
+
+    <!-- App libraries -->
+    <script src="app/Plunker.js"></script>
+   
+    <script src="app/AngularApp.js"></script>
+   
+    <script src="app/Directive/directive.js"></script>
+    <script src="app/Service/dataservice.js"></script>
+    <script src="app/Service/entityExtension.js"></script>
+    <script src="app/Filter/filter.js"></script>
+    <script src="App/Service/logger.js"></script>
+    <script src="app/Controller/employeeCtrl.js"></script>
+    
+</body>
+</html>
