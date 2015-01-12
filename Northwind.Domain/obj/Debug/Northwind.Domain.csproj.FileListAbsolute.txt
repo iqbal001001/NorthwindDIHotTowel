@@ -26,3 +26,13 @@ C:\Users\Aimen\Documents\Visual Studio 2013\Projects\NorthwindDIHotTowel\Northwi
 C:\Users\Aimen\Documents\Visual Studio 2013\Projects\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Aimen\Documents\Visual Studio 2013\Projects\NorthwindDIHotTowel\Northwind.Domain\obj\Debug\Northwind.Domain.dll
 C:\Users\Aimen\Documents\Visual Studio 2013\Projects\NorthwindDIHotTowel\Northwind.Domain\obj\Debug\Northwind.Domain.pdb
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\Northwind.Domain.dll.config
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\Northwind.Domain.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\Northwind.Domain.pdb
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\obj\Debug\Northwind.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\obj\Debug\Northwind.Domain.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.Domain\obj\Debug\Northwind.Domain.pdb

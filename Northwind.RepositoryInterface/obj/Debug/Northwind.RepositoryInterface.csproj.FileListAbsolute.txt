@@ -31,9 +31,14 @@ C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bi
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Northwind.RepositoryInterface.dll
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Northwind.RepositoryInterface.pdb
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Breeze.ContextProvider.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Breeze.ContextProvider.EF6.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\EntityFramework.dll
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Northwind.Domain.dll
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Northwind.Domain.pdb
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\EntityFramework.xml
+C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\obj\Debug\Northwind.RepositoryInterface.csprojResolveAssemblyReference.cache
 C:\Users\Aimen\Source\Repos\NorthwindDIHotTowel\Northwind.RepositoryInterface\obj\Debug\Northwind.RepositoryInterface.dll
